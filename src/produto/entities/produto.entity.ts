@@ -29,6 +29,11 @@ export class Produto{
     @Column({ type: "int"})
     quantidade: number
 
+    @Transform(({ value }: TransformFnParams) => value?.trim())
+    @IsNotEmpty() 
+    @Column({length: 5000, nullable: true}) 
+    descricao: string
+
 
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @IsNotEmpty() 
@@ -43,10 +48,4 @@ export class Produto{
         onDelete: "CASCADE"
     })
     categoria: Categoria;
-    
-
-    
-
-
-
 }
