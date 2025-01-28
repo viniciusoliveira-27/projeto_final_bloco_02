@@ -1,6 +1,7 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Produto } from "../../produto/entities/produto.entity";
 
 @Entity({ name: "tb_categorias" }) // CREATE TABLE tb_categorias()
 export class Categoria {
@@ -13,8 +14,8 @@ export class Categoria {
     @Column({ length: 255, nullable: false }) //VARCHAR(100) NOT NULL
     categoria: string;
 
-    // @OneToMany(() => Jogo, (jogo) => jogo.categoria)
-    // jogo: Jogo[];
+    @OneToMany(() => Produto, (produto) => produto.categoria)
+    produto: Produto[];
 
 
 
